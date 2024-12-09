@@ -14,8 +14,8 @@ Il **Calcolatrice IP** è uno strumento progettato per calcolare subnet, incluse
 ## Introduzione
 
 Il progetto offre due modalità di interazione:
-1. **Interfaccia a Riga di Comando (CLI)**: gli utenti possono interagire con lo strumento tramite comandi da terminale, ideale per automazione o utilizzo in script.
-2. **Interfaccia Grafica (GUI)**: un'interfaccia più user-friendly costruita con la libreria FLTK per chi preferisce un'interazione visiva.
+1. **Interfaccia a Riga di Comando (CLI)**: gli utenti possono interagire tramite terminale, utile per automazione.
+2. **Interfaccia Grafica (GUI)**: un'interfaccia costruita con la libreria FLTK.
 
 Il processo di compilazione utilizza **CMake** come sistema di build.
 Supporto per Windows e sperimentale per Linux.
