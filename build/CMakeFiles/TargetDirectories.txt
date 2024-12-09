@@ -1,0 +1,3 @@
+C:/msys64/home/utente1/projects/app/build/CMakeFiles/app.dir
+C:/msys64/home/utente1/projects/app/build/CMakeFiles/edit_cache.dir
+C:/msys64/home/utente1/projects/app/build/CMakeFiles/rebuild_cache.dir

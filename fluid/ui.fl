@@ -1,0 +1,228 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0400
+header_name {.h}
+code_name {.cxx}
+Function {inserisci_ip()} {} {
+  Fl_Window dialogo_w {
+    label {Inserisci IP} open
+    xywh {669 290 290 86} type Double hide modal
+  } {
+    Fl_Input ip_input_d_i {
+      label {Indirizzo IP:}
+      xywh {80 15 200 32}
+    }
+    Fl_Button {} {
+      label Ok
+      callback {informazioni_ip(ip_input_d_i->value())}
+      xywh {114 49 74 22}
+    }
+  }
+}
+
+Function {informazioni_app()} {} {
+  Fl_Window {} {
+    label Informazioni open
+    xywh {104 177 320 145} type Double hide
+  } {
+    Fl_Box {} {
+      label {Calcolatore IP}
+      xywh {108 11 110 52}
+    }
+    Fl_Box {} {
+      label {v .1.0 - 08/12/2024}
+      xywh {98 94 130 36}
+    }
+  }
+}
+
+Function {analizza_ip()} {} {
+  Fl_Window {} {
+    label {Informazioni IP} open
+    xywh {544 305 268 106} type Double hide
+  } {
+    Fl_Output output_ip_l {
+      label {Default Mask: }
+      xywh {110 10 141 20}
+    }
+    Fl_Output privato_ip_l {
+      label {Privato? }
+      xywh {128 38 34 22}
+    }
+    Fl_Output classe_ip_l {
+      label {Classe: }
+      xywh {128 68 30 22}
+    }
+  }
+}
+
+Function {app()} {open
+} {
+  Fl_Window {} {
+    label {Calcolatore IP} open
+    xywh {87 299 811 380} type Double visible
+  } {
+    Fl_Menu_Bar {} {open
+      xywh {1 0 809 20}
+    } {
+      Submenu {} {
+        label File open
+        xywh {10 10 100 20}
+      } {
+        MenuItem {} {
+          label {Salva...}
+          callback salva
+          xywh {10 10 100 20}
+        }
+        MenuItem {} {
+          label Esci
+          callback {exit(0)}
+          xywh {0 0 100 20}
+          code0 {\#include <cstdlib>}
+        }
+      }
+      Submenu {} {
+        label Opzioni open
+        xywh {0 0 100 20}
+      } {
+        MenuItem {} {
+          label {Informazioni IP}
+          callback {dialogo_w = inserisci_ip();
+dialogo_w->show();}
+          xywh {0 0 100 20}
+        }
+        MenuItem {} {
+          label {Confronto Rete}
+          callback {cambia_ctx(confronto_rete_g);}
+          xywh {0 0 100 20}
+        }
+        Submenu {} {
+          label {Calcola Sottorete} open
+          xywh {0 0 100 20}
+        } {
+          MenuItem {} {
+            label Fissa
+            callback {cambia_ctx(maschera_fissa_g);}
+            xywh {0 0 100 20}
+          }
+          MenuItem {} {
+            label Variabile
+            callback {cambia_ctx(maschera_variabile_g);}
+            xywh {0 0 100 20}
+          }
+        }
+      }
+      Submenu {} {
+        label Aiuto open
+        xywh {0 0 100 20}
+      } {
+        MenuItem {} {
+          label Documentazione
+          callback {fl_open_uri("https://github.com/uauei123/calcolatore-ip", NULL, 0)}
+          xywh {0 0 100 20}
+          code0 {\#include <FL/filename.h>}
+        }
+        MenuItem {} {
+          label Informazioni
+          callback {Fl_Window* informazioni_w = informazioni_app();
+informazioni_w->show();}
+          xywh {0 0 100 20}
+        }
+      }
+    }
+    Fl_Group confronto_rete_g {
+      xywh {-1 16 836 364} hide
+    } {
+      Fl_Input ip_confronto_1_i {
+        label {Primo IP: }
+        xywh {196 55 197 33}
+      }
+      Fl_Input ip_confronto_2_i {
+        label {Secondo IP: }
+        xywh {196 159 197 33}
+      }
+      Fl_Button {} {
+        label {?}
+        callback {informazioni_ip(ip_confronto_1_i->value())}
+        xywh {396 58 28 28}
+      }
+      Fl_Button {} {
+        label {?}
+        callback {informazioni_ip(ip_confronto_2_i->value())}
+        xywh {396 161 28 28}
+      }
+      Fl_Round_Button mask_1_b {
+        label {Maschera di default}
+        callback {if(mask_1_b->value() == 0) mask_1_i->show(); else mask_1_i->hide();}
+        xywh {427 62 78 22} down_box ROUND_DOWN_BOX value 1
+      }
+      Fl_Round_Button mask_2_b {
+        label {Maschera di default}
+        callback {if(mask_2_b->value() == 0) mask_2_i->show(); else mask_2_i->hide();}
+        xywh {427 165 78 22} down_box ROUND_DOWN_BOX value 1
+      }
+      Fl_Button {} {
+        label Confronta
+        callback confronta
+        xywh {299 240 125 32}
+      }
+      Fl_Input mask_1_i {
+        label {Subnet Mask:}
+        xywh {96 88 197 30} hide
+      }
+      Fl_Input mask_2_i {
+        label {Subnet Mask:}
+        xywh {96 157 197 30} hide
+      }
+    }
+    Fl_Group maschera_fissa_g {
+      xywh {0 16 835 364} hide
+    } {
+      Fl_Input ip_fissa_i {
+        label {Indirizzo IP: }
+        xywh {91 35 128 24}
+      }
+      Fl_Spinner sottoreti_fissa_s {
+        label {Numero sottoreti:}
+        xywh {373 34 97 24} maximum 4.1943e+06
+      }
+      Fl_Button {} {
+        label {?}
+        callback {informazioni_ip(ip_fissa_i->value())}
+        xywh {223 35 23 23}
+      }
+      Fl_Button {} {
+        label Calcola
+        callback calcola_fissa
+        xywh {184 66 98 23}
+      }
+    }
+    Fl_Group maschera_variabile_g {open
+      xywh {0 16 810 364} hide
+    } {
+      Fl_Input ip_variabile_i {
+        label {Indirizzo IP: }
+        xywh {91 37 128 24}
+      }
+      Fl_Spinner sottoreti_variabile_s {
+        label {Numero sottoreti:}
+        xywh {373 36 97 24} maximum 4.1943e+06
+      }
+      Fl_Button {} {
+        label {?}
+        callback {informazioni_ip(ip_fissa_i->value())}
+        xywh {223 37 23 23}
+      }
+      Fl_Button {} {
+        label Calcola
+        callback calcola_variabile
+        xywh {184 68 98 23}
+      }
+    }
+  }
+}
+
+decl {extern void informazioni_ip(const char* ip_str);} {public global
+}
+
+decl {extern void cambia_ctx(Fl_Group* attivo);} {public global
+}
