@@ -34,7 +34,7 @@ void calcola_fissa(Fl_Button* btn, void* data)
         {
             sottoreti.clear();
 
-            int n_sottoreti = sottoreti_fissa_s->value() + 1;
+            int n_sottoreti = sottoreti_fissa_s->value();
 
             if(n_sottoreti > (pow(2, 30 - bit_rete_per_classe(ip.leggi_classe()))))
             {
@@ -333,7 +333,7 @@ int main(int argc, char **argv)
                 return -1;
             }
 
-            int n_sottoreti = stoi(argv[3]) + 1;
+            int n_sottoreti = stoi(argv[3]);
 
             // Calcola numero di sottoreti massime con almeno 1 host
             if(n_sottoreti > (pow(2, 30 - bit_rete_per_classe(ip.leggi_classe()))))
